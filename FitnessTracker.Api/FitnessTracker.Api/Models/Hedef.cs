@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿// FitnessTracker.Api/Models/Hedef.cs
+
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FitnessTracker.Api.Models
@@ -28,6 +30,7 @@ namespace FitnessTracker.Api.Models
         public bool TamamlandiMi { get; set; }
 
         // Navigation Property - Bu hedefin hangi kullanıcıya ait olduğunu belirtir.
-        public Kullanici Kullanici { get; set; }
+        // CS8618 uyarılarını gidermek için null olmayan değer ataması yapıldı.
+        public Kullanici Kullanici { get; set; } = null!;
     }
 }

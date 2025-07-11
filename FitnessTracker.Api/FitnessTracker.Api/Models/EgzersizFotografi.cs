@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿// FitnessTracker.Api/Models/EgzersizFotografi.cs
+
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FitnessTracker.Api.Models
@@ -21,6 +23,7 @@ namespace FitnessTracker.Api.Models
         public int SiraNo { get; set; } = 1;
 
         // Navigation Property - Bu fotoğrafın hangi egzersize ait olduğunu belirtir.
-        public Egzersiz Egzersiz { get; set; }
+        // CS8618 uyarılarını gidermek için null olmayan değer ataması yapıldı.
+        public Egzersiz Egzersiz { get; set; } = null!;
     }
 }

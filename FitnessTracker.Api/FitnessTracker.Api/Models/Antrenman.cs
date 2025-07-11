@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿// FitnessTracker.Api/Models/Antrenman.cs
+
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FitnessTracker.Api.Models
@@ -15,7 +17,7 @@ namespace FitnessTracker.Api.Models
 
         public string? Notlar { get; set; }
 
-        // Navigation Property - Bu antrenmanın hangi kullanıcıya ait olduğunu belirtir.
-        public Kullanici Kullanici { get; set; }
+        // Navigation Property: EF Core tarafından doldurulacağı için null olmayacağını garanti ediyoruz.
+        public Kullanici Kullanici { get; set; } = null!;
     }
 }

@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿// FitnessTracker.Api/Models/AntrenmanDetay.cs
+
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FitnessTracker.Api.Models
@@ -22,7 +24,8 @@ namespace FitnessTracker.Api.Models
         public decimal Agirlik { get; set; }
 
         // Navigation Properties - Bu kaydın hangi antrenmana ve egzersize bağlı olduğunu belirtir.
-        public Antrenman Antrenman { get; set; }
-        public Egzersiz Egzersiz { get; set; }
+        // CS8618 uyarılarını gidermek için null olmayan değer ataması yapıldı.
+        public Antrenman Antrenman { get; set; } = null!;
+        public Egzersiz Egzersiz { get; set; } = null!;
     }
 }
