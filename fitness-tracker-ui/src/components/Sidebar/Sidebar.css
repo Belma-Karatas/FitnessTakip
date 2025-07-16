@@ -1,0 +1,104 @@
+.sidebar-container {
+    width: 250px;
+    height: 100vh;
+    background-color: #fdfaf4; /* Krem ton */
+    color: #4a4a4a; /* Koyu gri metin */
+    padding: 20px 0;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow-y: auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.sidebar-header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-user-icon {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    color: #a58e60; /* Altın kahve */
+}
+
+.sidebar-username {
+    margin: 0;
+    font-size: 1.2em;
+    font-weight: 600;
+    color: #4a4a4a;
+}
+
+.sidebar-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-nav li {
+    margin: 0;
+}
+
+.sidebar-nav .nav-link {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    color: #4a4a4a;
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    font-size: 1.05em;
+    border-radius: 6px;
+    margin: 4px 12px;
+}
+
+.sidebar-nav .nav-link:hover {
+    background-color: #eee7d8;
+    color: #000000;
+}
+
+.sidebar-nav .nav-link.active {
+    background-color: #e8dac2;
+    color: #000000;
+    font-weight: bold;
+}
+
+.sidebar-nav .nav-link svg {
+    margin-right: 15px;
+    font-size: 1.3em;
+    color: #a58e60;
+}
+
+.logout-section {
+    margin-top: auto; /* Panelin en altına it */
+    padding: 20px 20px 40px 20px; /* Alt tarafta biraz daha boşluk bıraktık */
+}
+
+
+.logout-button {
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    color: #d9534f; /* Kırmızı ton */
+    font-size: 1.1em;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 10px 0;
+    border-radius: 6px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    margin-bottom: 10px;
+}
+
+.logout-button:hover {
+    background-color: #d9534f;
+    color: white;
+}
+
+.logout-button svg {
+    margin-right: 10px;
+}

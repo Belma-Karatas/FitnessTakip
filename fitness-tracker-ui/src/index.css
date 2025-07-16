@@ -1,11 +1,14 @@
+/* src/index.css */
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  /* Genel olarak proje için ana renkler */
+  color: #213547; /* Açık tema metin rengi */
+  /* background-color: #242424; /* Koyu tema arka plan rengi, görselle değişecek */
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -15,19 +18,31 @@
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: #646cff; /* Varsayılan link rengi */
   text-decoration: inherit;
 }
 a:hover {
   color: #535bf2;
 }
 
+/* BODY STİLLERİ ARKA PLAN GÖRSELİ İÇİN GÜNCELLENDİ */
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
+  /* place-items: center; /* Flexbox yapısıyla layout'u daha iyi ayarlayacağız */
   min-width: 320px;
   min-height: 100vh;
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif; /* Fontu body'den alalım */
+
+  /* ARKA PLAN GÖRSELİ BURAYA EKLE */
+  /* ÖNEMLİ: Dosya adının "fitnessdashboard.png" olduğundan emin olun. */
+  background-image: url('/images/fitnessdashboard.png');
+  background-size: cover; /* Görsel tüm alanı kaplasın */
+  background-position: center center; /* Görseli ortala */
+  background-repeat: no-repeat; /* Görseli tekrarlamayı engelle */
+  background-attachment: fixed; /* Sayfa kaydığında görsel sabit kalsın */
+
+  /* Görselin üzerine metinlerin daha iyi okunması için renkleri ayarlayın */
+  color: #ffffff; /* Beyaz metin */
 }
 
 h1 {
@@ -42,7 +57,7 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: #1a1a1a; /* Varsayılan buton rengi */
   cursor: pointer;
   transition: border-color 0.25s;
 }
@@ -54,6 +69,7 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+/* Tema geçişleri için buradaki renkleri koruyalım */
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

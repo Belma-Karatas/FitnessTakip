@@ -1,0 +1,70 @@
+/* src/components/Dashboard/ClientsList.css */
+
+.clients-container {
+    margin: 20px auto; /* Dashboard container'ından biraz boşluk */
+    padding: 20px;
+    max-width: 800px;
+    background-color: #FAFAFA; /* Panel için daha açık gri */
+    border-radius: 10px; /* Köşeleri daha yuvarlak */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* Daha yumuşak ve belirgin gölge */
+    text-align: left;
+    border: 1px solid #E0E0E0; /* Çok ince bir kenarlık */
+}
+
+.clients-container h2 {
+    color: #546E7A; /* Açık gri-mavi başlık */
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 1.8em;
+    font-weight: 600;
+}
+
+.clients-container .error {
+    color: #d32f2f;
+    font-weight: bold;
+    background-color: #ffebee;
+    border-color: #ef9a9a;
+}
+
+.clients-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.client-item {
+    background-color: #FFFFFF; /* Beyaz kartlar */
+    border: 1px solid #E3F2FD; /* Açık mavi kenarlık */
+    border-radius: 8px;
+    margin-bottom: 15px;
+    padding: 15px 20px; /* Yatayda biraz daha fazla padding */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.client-item:hover {
+    transform: translateY(-5px); /* Hover'da biraz daha fazla kalkma */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.client-info strong {
+    font-size: 1.15em;
+    color: #1976D2; /* Vurgulu mavi */
+}
+
+.client-info small {
+    color: #757575;
+    font-size: 0.85em;
+}
+
+.client-weight {
+    font-weight: 600; /* Biraz daha kalın */
+    color: #00796B;
+    background-color: #E0F2F1; /* Açık yeşilimsi arka plan */
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 0.95em;
+}

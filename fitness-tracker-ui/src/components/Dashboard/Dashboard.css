@@ -1,0 +1,42 @@
+/* src/components/Dashboard/Dashboard.css */
+
+.dashboard-wrapper {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  box-sizing: border-box;
+  background: none; /* Arka plan App.css’ten geliyor, burada ekleme! */
+}
+
+.dashboard-card {
+  width: 100%;
+  max-width: 850px;
+  padding: 50px 40px;
+  border-radius: 16px;
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  text-align: center;
+  color: #333;
+}
+
+.dashboard-card h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #2d2d2d;
+}
+
+.dashboard-card p {
+  font-size: 1.2rem;
+  margin-bottom: 25px;
+  color: #555;
+}
+
+.dashboard-empty {
+  font-size: 1rem;
+  color: #777;
+}

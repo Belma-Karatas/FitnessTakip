@@ -1,5 +1,7 @@
+// src/components/Auth/Register.jsx
 import React, { useState } from 'react';
-import axios from 'axios';
+// import axios from 'axios'; // Axios'u doğrudan import etmeyi bırakıyoruz
+import axiosInstance from '../../api/axiosInstance'; // Axios instance'ımızı import ediyoruz
 import { useNavigate, Link } from 'react-router-dom';
 import './Register.css';
 
@@ -27,24 +29,32 @@ function Register() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setMessage('');
+        setMessage(''); // Önceki mesajları temizle
         setIsError(false);
 
         try {
-            const response = await axios.post('https://localhost:7062/api/auth/register', formData);
+            // await axios.post('https://localhost:7062/api/auth/register', formData); // Eski kullanım, теперь используем axiosInstance
+            // Sadece route'un geri kalanını belirtmek yeterli, baseURL axiosInstance'da tanımlı.
+            const response = await axiosInstance.post('/auth/register', formData);
+
+            // Backend'den gelen başarılı mesajı işle
             setMessage(response.data.message || 'Kayıt başarıyla tamamlandı!');
             setIsError(false);
 
+            // Başarılı kayıt sonrası kısa bir süre bekleyip giriş sayfasına yönlendir
             setTimeout(() => {
                 navigate('/login');
-            }, 1000);
+            }, 1500); // 1.5 saniye sonra yönlendir
 
         } catch (error) {
             console.error("Kayıt hatası:", error);
             if (error.response) {
+                // Backend'den gelen hata mesajını göster
+                // error.response.data'nın bir string olduğunu varsayıyoruz.
                 setMessage(error.response.data || 'Kayıt sırasında bir hata oluştu.');
             } else {
-                setMessage('Sunucuya bağlanırken bir hata oluştu.');
+                // Ağ hatası gibi durumlarda genel bir mesaj göster
+                setMessage('Sunucuya bağlanırken bir hata oluştu. Backend servisinin çalıştığından emin olun.');
             }
             setIsError(true);
         }
@@ -61,28 +71,63 @@ function Register() {
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="kullaniciAdi">Kullanıcı Adı:</label>
-                    <input type="text" id="kullaniciAdi" name="kullaniciAdi" value={formData.kullaniciAdi} onChange={handleChange} required minLength="3" />
+                    <input
+                        type="text"
+                        id="kullaniciAdi"
+                        name="kullaniciAdi"
+                        value={formData.kullaniciAdi}
+                        onChange={handleChange}
+                        required
+                        minLength="3" // Kullanıcı adı için minimum uzunluk
+                    />
                 </div>
                 <div className="form-group">
                     <label htmlFor="eposta">E-posta:</label>
-                    <input type="email" id="eposta" name="eposta" value={formData.eposta} onChange={handleChange} required />
+                    <input
+                        type="email"
+                        id="eposta"
+                        name="eposta"
+                        value={formData.eposta}
+                        onChange={handleChange}
+                        required
+                    />
                 </div>
                 <div className="form-group">
                     <label htmlFor="sifre">Şifre:</label>
-                    <input type="password" id="sifre" name="sifre" value={formData.sifre} onChange={handleChange} required minLength="6" />
+                    <input
+                        type="password"
+                        id="sifre"
+                        name="sifre"
+                        value={formData.sifre}
+                        onChange={handleChange}
+                        required
+                        minLength="6" // Şifre için minimum uzunluk
+                    />
                 </div>
                 <div className="form-group">
                     <label htmlFor="ad">Ad :</label>
-                    <input type="text" id="ad" name="ad" value={formData.ad} onChange={handleChange} />
+                    <input
+                        type="text"
+                        id="ad"
+                        name="ad"
+                        value={formData.ad}
+                        onChange={handleChange}
+                    />
                 </div>
                 <div className="form-group">
                     <label htmlFor="soyad">Soyad :</label>
-                    <input type="text" id="soyad" name="soyad" value={formData.soyad} onChange={handleChange} />
+                    <input
+                        type="text"
+                        id="soyad"
+                        name="soyad"
+                        value={formData.soyad}
+                        onChange={handleChange}
+                    />
                 </div>
                 <button type="submit">Kayıt Ol</button>
             </form>
 
-            {/* 🔽 Giriş yap linki */}
+            {/* Giriş yap linki */}
             <div className="auth-links">
                 <p>Zaten bir hesabın var mı? <Link to="/login">Giriş Yap</Link></p>
             </div>

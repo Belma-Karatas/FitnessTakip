@@ -1,6 +1,7 @@
 // src/components/Auth/Login.jsx
 import React, { useState } from 'react';
-import axios from 'axios';
+import axiosInstance from '../../api/axiosInstance'; // Axios instance'ımızı import ediyoruz
+import { useNavigate, Link } from 'react-router-dom'; // Link ve useNavigate'i import ediyoruz
 import './Login.css'; // Login için CSS dosyasını import edin
 
 function Login() {
@@ -11,6 +12,8 @@ function Login() {
 
     const [message, setMessage] = useState('');
     const [isError, setIsError] = useState(false);
+
+    const navigate = useNavigate(); // navigate hook'unu kullanmak için ekledik
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -26,10 +29,7 @@ function Login() {
         setIsError(false);
 
         try {
-            // Backend API URL'sini doğru ayarlayın.
-            // Lokal olarak çalışıyorsa genellikle http://localhost:PORT veya https://localhost:PORT olur.
-            // Projenizde backend'in çalıştığı port numarasını kontrol edin.
-            const response = await axios.post('https://localhost:7062/api/auth/login', formData);
+            const response = await axiosInstance.post('/auth/login', formData);
 
             // Backend'den gelen token'ı ve kullanıcı bilgilerini sakla
             const token = response.data.token;
@@ -46,18 +46,12 @@ function Login() {
             setMessage('Başarıyla giriş yapıldı!');
             setIsError(false);
 
-            // Başarılı giriş sonrası ana sayfaya veya dashboard'a yönlendirme yap
-            // Eğer react-router-dom kullanıyorsanız:
-            // import { useNavigate } from 'react-router-dom';
-            // const navigate = useNavigate();
-            // navigate('/dashboard');
-            // Şimdilik basit bir yönlendirme veya sayfa yenileme yapabiliriz:
-            window.location.href = '/dashboard'; // Veya başka bir sayfaya yönlendirin
+            // Başarılı giriş sonrası yönlendirme
+            navigate('/dashboard'); // window.location.href yerine useNavigate kullanıyoruz
 
         } catch (error) {
             console.error("Giriş hatası:", error);
             if (error.response) {
-                // Backend'den gelen hata mesajını göster
                 setMessage(error.response.data || 'Giriş sırasında bir hata oluştu.');
             } else {
                 setMessage('Sunucuya bağlanırken bir hata oluştu. Backend servisinin çalıştığından emin olun.');
@@ -102,8 +96,7 @@ function Login() {
 
             {/* Kayıt ol linki */}
             <div className="auth-links">
-                <p>Hesabınız yok mu? <a href="/register">Kayıt Ol</a></p>
-                {/* Şifremi unuttum linki de eklenebilir */}
+                <p>Hesabınız yok mu? <Link to="/register">Kayıt Ol</Link></p>
             </div>
         </div>
     );
