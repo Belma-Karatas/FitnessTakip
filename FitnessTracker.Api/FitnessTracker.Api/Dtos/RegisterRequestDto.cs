@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿// FitnessTracker.Api/Dtos/RegisterRequestDto.cs
+using System.ComponentModel.DataAnnotations;
 
 namespace FitnessTracker.Api.Dtos
 {
@@ -23,8 +24,9 @@ namespace FitnessTracker.Api.Dtos
         [MaxLength(50)]
         public string? Soyad { get; set; }
 
-        // İsteğe bağlı olarak ekleyebilirsiniz:
-        // public string? Cinsiyet { get; set; }
-        // public DateTime? DogumTarihi { get; set; }
+        // Rol alanı buraya eklendi
+        [Required] // Rol alanı da zorunlu olsun
+        [MaxLength(20)]
+        public string Rol { get; set; } = "Danisan"; // Varsayılan rolü Danisan olarak ayarladık
     }
 }

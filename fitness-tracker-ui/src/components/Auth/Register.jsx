@@ -2,7 +2,8 @@
 import React, { useState } from 'react';
 // import axios from 'axios'; // Axios'u doğrudan import etmeyi bırakıyoruz
 import axiosInstance from '../../api/axiosInstance'; // Axios instance'ımızı import ediyoruz
-import { useNavigate, Link } from 'react-router-dom';
+// useNavigate'ı kaldırıyoruz çünkü artık kullanmıyoruz, yerine setTimeout ile yönlendirme yapıyoruz
+import { Link } from 'react-router-dom';
 import './Register.css';
 
 function Register() {
@@ -11,13 +12,14 @@ function Register() {
         eposta: '',
         sifre: '',
         ad: '',
-        soyad: ''
+        soyad: '',
+        rol: 'Danisan' // Varsayılan rol Danisan olacak
     });
 
     const [message, setMessage] = useState('');
     const [isError, setIsError] = useState(false);
 
-    const navigate = useNavigate();
+    // const navigate = useNavigate(); // Bu satırı kaldırıyoruz
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -42,8 +44,10 @@ function Register() {
             setIsError(false);
 
             // Başarılı kayıt sonrası kısa bir süre bekleyip giriş sayfasına yönlendir
+            // Yönlendirme için window.location.href kullanabiliriz çünkü navigate artık yok.
+            // Veya daha iyi bir yaklaşım: bir timeout ile biraz bekle, sonra sayfayı yenile.
             setTimeout(() => {
-                navigate('/login');
+                window.location.href = '/login'; // Sayfayı doğrudan login'e yönlendir
             }, 1500); // 1.5 saniye sonra yönlendir
 
         } catch (error) {
@@ -124,6 +128,23 @@ function Register() {
                         onChange={handleChange}
                     />
                 </div>
+
+                {/* Rol seçeneği eklendi */}
+                <div className="form-group">
+                    <label htmlFor="rol">Hesap Türü:</label>
+                    <select
+                        id="rol"
+                        name="rol"
+                        value={formData.rol}
+                        onChange={handleChange}
+                        required
+                        className="rol-select" // Stil vermek için class ekleyebiliriz (Register.css'te tanımlı olmalı)
+                    >
+                        <option value="Danisan">Danışan</option>
+                        <option value="Antrenor">Antrenör</option>
+                    </select>
+                </div>
+
                 <button type="submit">Kayıt Ol</button>
             </form>
 

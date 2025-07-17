@@ -1,42 +1,65 @@
 /* src/components/Dashboard/Dashboard.css */
 
-.dashboard-wrapper {
+.dashboard-content-wrapper {
   width: 100%;
-  min-height: 100vh;
+  /* min-height: calc(100vh - 60px); /* Bu satırı kaldırıyorum, çünkü hoş geldiniz kutusunun yüksekliğini kısıtlamamalı */
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
   padding: 30px;
   box-sizing: border-box;
-  background: none; /* Arka plan App.css’ten geliyor, burada ekleme! */
+  background: none;
+  position: relative;
 }
 
-.dashboard-card {
+.welcome-banner {
   width: 100%;
-  max-width: 850px;
-  padding: 50px 40px;
-  border-radius: 16px;
-  background-color: rgba(255, 255, 255, 0.9);
+  text-align: left;
+  margin-bottom: 30px;
+  padding-left: 10px;
+  box-sizing: border-box;
+  /* Bu alana bir yükseklik sınırlaması ekleyebiliriz */
+  display: flex; /* Flex kullanıldığı için alt öğelerin hizalanmasını kontrol eder */
+  align-items: flex-start; /* Kutuyu en üste hizalar */
+}
+
+.welcome-message-box {
+  display: inline-block;
+  padding: 30px 40px;
+  border-radius: 15px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(245, 245, 245, 0.8) 100%);
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  text-align: center;
-  color: #333;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  /* Önemli Değişiklik: Yüksekliği içeriğe göre ayarla */
+  height: auto; /* Kutunun yüksekliği içeriğe göre otomatik ayarlanacak */
+  max-height: 300px; /* Ama isterseniz maksimum bir yükseklik verebilirsiniz, örneğin 300px */
+  overflow: hidden; /* Eğer içeriğin taşmasını istemezseniz */
 }
 
-.dashboard-card h1 {
+.welcome-message-box h1 {
   font-size: 2.5rem;
-  margin-bottom: 20px;
-  color: #2d2d2d;
+  margin: 0 0 10px 0;
+  color: #333;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Metin sola yaslı */
 }
 
-.dashboard-card p {
+.welcome-message-box h1 span {
+  margin-right: 10px;
+  display: inline-block;
+}
+
+.welcome-message-box p {
   font-size: 1.2rem;
-  margin-bottom: 25px;
+  margin: 0;
   color: #555;
+  line-height: 1.6;
 }
 
-.dashboard-empty {
-  font-size: 1rem;
-  color: #777;
+.dashboard-content-wrapper > *:not(.welcome-banner) { /* Hoş geldiniz banner'ı dışındaki içeriğe üstten boşluk */
+    margin-top: 30px;
 }

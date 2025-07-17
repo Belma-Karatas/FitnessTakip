@@ -1,7 +1,8 @@
 // src/components/Auth/Login.jsx
 import React, { useState } from 'react';
 import axiosInstance from '../../api/axiosInstance'; // Axios instance'ımızı import ediyoruz
-import { useNavigate, Link } from 'react-router-dom'; // Link ve useNavigate'i import ediyoruz
+// useNavigate'ı kaldırıyoruz çünkü artık kullanmıyoruz
+import { Link } from 'react-router-dom';
 import './Login.css'; // Login için CSS dosyasını import edin
 
 function Login() {
@@ -13,7 +14,7 @@ function Login() {
     const [message, setMessage] = useState('');
     const [isError, setIsError] = useState(false);
 
-    const navigate = useNavigate(); // navigate hook'unu kullanmak için ekledik
+    // const navigate = useNavigate(); // Bu satırı kaldırıyoruz
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -46,14 +47,17 @@ function Login() {
             setMessage('Başarıyla giriş yapıldı!');
             setIsError(false);
 
-            // Başarılı giriş sonrası yönlendirme
-            navigate('/dashboard'); // window.location.href yerine useNavigate kullanıyoruz
+            // Başarılı giriş sonrası sayfayı yenilemek,
+            // App component'inin localStorage'ı doğru okuyup isLoggedIn state'ini güncellemesini sağlar.
+            window.location.reload();
 
         } catch (error) {
             console.error("Giriş hatası:", error);
             if (error.response) {
+                // Backend'den gelen hata mesajını göster
                 setMessage(error.response.data || 'Giriş sırasında bir hata oluştu.');
             } else {
+                // Ağ hatası gibi durumlarda genel bir mesaj göster
                 setMessage('Sunucuya bağlanırken bir hata oluştu. Backend servisinin çalıştığından emin olun.');
             }
             setIsError(true);

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using FitnessTracker.Api.Models;
 using FitnessTracker.Api.Data;
 using FitnessTracker.Api.Dtos;
+using FitnessTracker.Api.Services; // 🔴 IAuthenticationService için gerekli
 using BCrypt.Net;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -40,7 +41,6 @@ namespace FitnessTracker.Api.Controllers
             var existingUser = await _context.Kullanicilar.FirstOrDefaultAsync(u => u.KullaniciAdi == request.KullaniciAdi || u.Eposta == request.Eposta);
             if (existingUser != null)
             {
-                // Duruma göre daha spesifik hata mesajları döndürülebilir (örn: "Kullanıcı adı zaten kullanılıyor.")
                 return Conflict("Kullanıcı adı veya e-posta zaten kullanılıyor.");
             }
 
@@ -54,13 +54,12 @@ namespace FitnessTracker.Api.Controllers
                 Ad = request.Ad,
                 Soyad = request.Soyad,
                 OlusturulmaTarihi = DateTime.UtcNow,
-                Rol = "Danisan"
+                Rol = request.Rol
             };
 
             _context.Kullanicilar.Add(newUser);
             await _context.SaveChangesAsync();
 
-            // Genellikle kayıt sonrası token verilmez, giriş yapması istenir.
             return CreatedAtAction(nameof(Register), new { id = newUser.KullaniciID }, new { message = "Kullanıcı başarıyla kaydedildi." });
         }
 
@@ -72,7 +71,6 @@ namespace FitnessTracker.Api.Controllers
                 return BadRequest(ModelState);
             }
 
-            // Kullanıcıyı kullanıcı adı veya e-posta ile bul
             var user = await _context.Kullanicilar.FirstOrDefaultAsync(u => u.KullaniciAdi == request.KullaniciAdiVeyaEposta || u.Eposta == request.KullaniciAdiVeyaEposta);
 
             if (user == null)
@@ -80,16 +78,13 @@ namespace FitnessTracker.Api.Controllers
                 return Unauthorized("Geçersiz kullanıcı adı veya şifre.");
             }
 
-            // Şifreyi doğrula
             if (!_authService.VerifyPassword(request.Sifre, user.SifreHash))
             {
                 return Unauthorized("Geçersiz kullanıcı adı veya şifre.");
             }
 
-            // JWT Token oluştur
             var token = GenerateJwtToken(user);
 
-            // Başarılı giriş response'u
             return Ok(new LoginResponseDto
             {
                 KullaniciID = user.KullaniciID,
@@ -99,15 +94,14 @@ namespace FitnessTracker.Api.Controllers
             });
         }
 
-        // JWT Token oluşturan özel metot
         private string GenerateJwtToken(Kullanici user)
         {
             var claims = new[]
             {
-                new Claim(JwtRegisteredClaimNames.Sub, user.KullaniciID.ToString()), // Subject (Kullanıcı ID)
-                new Claim(JwtRegisteredClaimNames.UniqueName, user.KullaniciAdi),    // Unique Name (Kullanıcı Adı)
-                new Claim(ClaimTypes.Email, user.Eposta),                           // Email
-                new Claim(ClaimTypes.Role, user.Rol)                                // Rol
+                new Claim(JwtRegisteredClaimNames.Sub, user.KullaniciID.ToString()),
+                new Claim(JwtRegisteredClaimNames.UniqueName, user.KullaniciAdi),
+                new Claim(ClaimTypes.Email, user.Eposta),
+                new Claim(ClaimTypes.Role, user.Rol)
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtSettings:SecretKey"]!));
@@ -117,7 +111,7 @@ namespace FitnessTracker.Api.Controllers
                 issuer: _configuration["JwtSettings:Issuer"],
                 audience: _configuration["JwtSettings:Audience"],
                 claims: claims,
-                expires: DateTime.UtcNow.AddDays(1), // Token'ın geçerlilik süresi (1 gün)
+                expires: DateTime.UtcNow.AddDays(1),
                 signingCredentials: credentials
             );
 
@@ -125,3 +119,4 @@ namespace FitnessTracker.Api.Controllers
         }
     }
 }
+
