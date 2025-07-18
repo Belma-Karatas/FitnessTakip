@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿// FitnessTracker.Api/FitnessTracker.Api/Models/Egzersiz.cs
+using System.ComponentModel.DataAnnotations;
 
 namespace FitnessTracker.Api.Models
 {
@@ -9,12 +10,14 @@ namespace FitnessTracker.Api.Models
 
         [Required]
         [MaxLength(100)]
-        public string Ad { get; set; }
+        // CS8618 Uyarısını gidermek için başlatıcı (initializer) eklendi.
+        public string Ad { get; set; } = null!;
 
-        public string? Aciklama { get; set; }
+        public string? Aciklama { get; set; } // Null olabilir.
 
         [Required]
         [MaxLength(50)]
-        public string KasGrubu { get; set; }
+        // CS8618 Uyarısını gidermek için başlatıcı (initializer) eklendi.
+        public string KasGrubu { get; set; } = null!;
     }
 }

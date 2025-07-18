@@ -1,5 +1,5 @@
-﻿// FitnessTracker.Api/Models/BeslenmeGunlugu.cs
-
+﻿// FitnessTracker.Api/FitnessTracker.Api/Models/BeslenmeGunlugu.cs
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -17,11 +17,13 @@ namespace FitnessTracker.Api.Models
 
         [Required]
         [MaxLength(50)]
-        public string OgunTipi { get; set; }
+        // CS8618 Uyarısını gidermek için başlatıcı (initializer) eklendi.
+        public string OgunTipi { get; set; } = null!;
 
         [Required]
         [MaxLength(100)]
-        public string YiyecekAdi { get; set; }
+        // CS8618 Uyarısını gidermek için başlatıcı (initializer) eklendi.
+        public string YiyecekAdi { get; set; } = null!;
 
         public int Kalori { get; set; }
 
@@ -34,8 +36,7 @@ namespace FitnessTracker.Api.Models
         [Column(TypeName = "decimal(5, 1)")]
         public decimal Yag { get; set; }
 
-        // Navigation Property - Bu kaydın hangi kullanıcıya ait olduğunu belirtir.
-        // CS8618 uyarılarını gidermek için null olmayan değer ataması yapıldı.
-        public Kullanici Kullanici { get; set; } = null!;
+        // Navigation Property
+        public Kullanici Kullanici { get; set; } = null!; // Null olmamalı
     }
 }

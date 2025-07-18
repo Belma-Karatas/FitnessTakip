@@ -1,5 +1,5 @@
-﻿// FitnessTracker.Api/Models/EgzersizFotografi.cs
-
+﻿// FitnessTracker.Api/FitnessTracker.Api/Models/EgzersizFotografi.cs
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -15,15 +15,15 @@ namespace FitnessTracker.Api.Models
 
         [Required]
         [MaxLength(255)]
-        public string FotoURL { get; set; }
+        // CS8618 Uyarısını gidermek için başlatıcı (initializer) eklendi.
+        public string FotoURL { get; set; } = null!;
 
         [MaxLength(100)]
-        public string? Aciklama { get; set; }
+        public string? Aciklama { get; set; } // Null olabilir.
 
-        public int SiraNo { get; set; } = 1;
+        public int SiraNo { get; set; } = 1; // Varsayılan değer atandığı için uyarı vermez.
 
-        // Navigation Property - Bu fotoğrafın hangi egzersize ait olduğunu belirtir.
-        // CS8618 uyarılarını gidermek için null olmayan değer ataması yapıldı.
-        public Egzersiz Egzersiz { get; set; } = null!;
+        // Navigation Property
+        public Egzersiz Egzersiz { get; set; } = null!; // Null olmamalı
     }
 }

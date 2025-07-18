@@ -17,7 +17,10 @@ namespace FitnessTracker.Api.Models
 
         public string? Notlar { get; set; }
 
-        // Navigation Property: EF Core tarafından doldurulacağı için null olmayacağını garanti ediyoruz.
+        // Kullanıcıyla ilişki
         public Kullanici Kullanici { get; set; } = null!;
+
+        // 🔧 AntrenmanDetaylari ile bire-çok ilişki (1 Antrenman - çok Detay)
+        public ICollection<AntrenmanDetay> AntrenmanDetaylari { get; set; } = new List<AntrenmanDetay>();
     }
 }

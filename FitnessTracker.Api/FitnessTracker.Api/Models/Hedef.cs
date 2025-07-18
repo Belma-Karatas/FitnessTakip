@@ -1,5 +1,5 @@
-﻿// FitnessTracker.Api/Models/Hedef.cs
-
+﻿// FitnessTracker.Api/FitnessTracker.Api/Models/Hedef.cs
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -15,7 +15,8 @@ namespace FitnessTracker.Api.Models
 
         [Required]
         [MaxLength(50)]
-        public string HedefTipi { get; set; }
+        // CS8618 Uyarısını gidermek için başlatıcı (initializer) eklendi.
+        public string HedefTipi { get; set; } = null!;
 
         [Column(TypeName = "decimal(10, 2)")]
         public decimal HedefDeger { get; set; }
@@ -29,8 +30,7 @@ namespace FitnessTracker.Api.Models
 
         public bool TamamlandiMi { get; set; }
 
-        // Navigation Property - Bu hedefin hangi kullanıcıya ait olduğunu belirtir.
-        // CS8618 uyarılarını gidermek için null olmayan değer ataması yapıldı.
-        public Kullanici Kullanici { get; set; } = null!;
+        // Navigation Property (Opsiyonel, ama genellikle kullanılır)
+        public Kullanici Kullanici { get; set; } = null!; // Null olmamalı
     }
 }

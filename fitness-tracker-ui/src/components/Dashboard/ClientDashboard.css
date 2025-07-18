@@ -1,0 +1,99 @@
+/* src/components/Dashboard/ClientDashboard.css */
+
+.client-dashboard-sections {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px; /* Bölümler arasındaki dikey boşluk */
+    padding: 0 10px; /* Yanlardan biraz boşluk */
+}
+
+.client-dashboard-sections h2 {
+    color: #546E7A; /* Açık gri-mavi başlık */
+    font-size: 1.8em;
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+/* İstatistik kartları grid'i (TrainerStatsCard ve ClientStatsCard için ortak) */
+.client-stats-grid {
+    display: flex;
+    flex-wrap: wrap; /* Küçük ekranlarda alt alta gelsinler */
+    justify-content: center; /* Kartları ortala */
+    gap: 20px; /* Kartlar arası boşluk */
+    padding: 0 10px; /* Kenarlardan biraz boşluk */
+}
+
+/* Özet Kartlar (Son Antrenman, Hedef, Antrenör) */
+.summary-card {
+    background-color: #FFFFFF; /* Beyaz */
+    border: 1px solid #E3F2FD; /* Açık mavi kenarlık */
+    border-radius: 12px;
+    padding: 20px 25px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin: 10px auto; /* Kartları ortalamak için margin auto */
+    width: 100%; /* Genişlik */
+    max-width: 400px; /* Maksimum genişlik */
+    flex: 1; /* Esnek büyüme */
+    min-width: 280px; /* Minimum genişlik */
+    text-align: left; /* İçeriği sola yasla */
+}
+
+.summary-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.summary-card h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #1976D2; /* Vurgulu mavi başlık */
+    font-size: 1.3em;
+    font-weight: 600;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.summary-card p {
+    margin-bottom: 8px;
+    font-size: 1.05em;
+    color: #424242; /* Koyu gri metin */
+    line-height: 1.6;
+}
+
+.summary-card p:last-child {
+    margin-bottom: 0;
+}
+
+/* Özel kart stilleri */
+.last-workout-summary h3 { color: #00796B; } /* Yeşil */
+.last-workout-summary p { color: #004D40; }
+
+.current-goal-summary h3 { color: #C2185B; } /* Pembe/Kırmızı */
+.current-goal-summary p { color: #880E4F; }
+
+.assigned-coach-summary h3 { color: #5D4037; } /* Kahverengi */
+.assigned-coach-summary p { color: #3E2723; }
+
+
+/* Mobil Cihazlar için Düzenleme */
+@media (max-width: 768px) {
+    .client-stats-grid .client-stats-card {
+        flex-basis: calc(50% - 20px);
+        min-width: 160px;
+    }
+    .summary-card {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .client-stats-grid .client-stats-card {
+        flex-basis: 100%;
+        min-width: unset;
+    }
+    .client-stats-card .stats-icon { font-size: 2.2em; }
+    .client-stats-card .stats-value { font-size: 1.8em; }
+}

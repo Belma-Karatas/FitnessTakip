@@ -1,0 +1,62 @@
+/* src/components/Dashboard/TrainerDashboard.css */
+
+/* Antrenör dashboard'una özgü stiller buraya gelecek */
+.trainer-dashboard {
+    /* background-color: #e8f5e9; /* Açık yeşilimsi bir arka plan denenebilir */
+    padding: 20px;
+}
+
+.trainer-dashboard .welcome-message-box {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(232, 245, 237, 0.8) 100%); /* Antrenörler için daha yeşilimsi ton */
+    border: 1px solid rgba(178, 223, 252, 0.5); /* Açık mavi border */
+}
+
+.trainer-dashboard .welcome-message-box h1 {
+    color: #2E7D32; /* Koyu yeşil başlık */
+}
+
+.trainer-dashboard .welcome-message-box p {
+    color: #388E3C; /* Koyu yeşil metin */
+}
+
+/* İstatistik kartları için ek düzenlemeler (genel stillerden farklı olarak) */
+.trainer-dashboard .stats-grid .stats-card {
+    background-color: #f1f8e9; /* Çok açık yeşil */
+    border-color: #c8e6c9; /* Açık yeşil border */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.trainer-dashboard .stats-grid .stats-card:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.trainer-dashboard .stats-icon {
+    color: #388E3C; /* Yeşil ikon */
+}
+
+.trainer-dashboard .stats-title {
+    color: #2E7D32; /* Koyu yeşil başlık */
+}
+
+.trainer-dashboard .stats-value {
+    color: #1B5E20; /* Çok koyu yeşil değer */
+}
+
+/* ClientsList section'ı için ek stiller */
+.trainer-dashboard .clients-list-section {
+    margin-top: 30px;
+    background-color: #FFFFFF;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
+    border: 1px solid #E3F2FD;
+}
+
+.trainer-dashboard .clients-list-section h2 {
+    color: #1976D2; /* Mavi başlık */
+    font-size: 1.8em;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+/* ClientsList component'inin içindeki stiller ClientsList.css'te */

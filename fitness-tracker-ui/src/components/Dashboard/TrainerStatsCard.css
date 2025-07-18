@@ -1,0 +1,80 @@
+/* src/components/Dashboard/TrainerStatsCard.css */
+
+.stats-card {
+    background-color: #FFFFFF; /* Beyaz kart arka planı */
+    border: 1px solid #E3F2FD; /* Açık mavi kenarlık */
+    border-radius: 12px; /* Yuvarlak köşeler */
+    padding: 20px 25px; /* İç boşluk */
+    display: flex;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* Hafif gölge */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin: 10px; /* Kartlar arasında boşluk */
+    flex: 1; /* Flex item olarak esnemesini sağlar */
+    min-width: 200px; /* Minimum genişlik */
+    text-align: center; /* Metinleri ortala */
+    justify-content: center; /* İçeriği yatayda ortala */
+    flex-direction: column; /* İçerikleri dikeyde hizala */
+}
+
+.stats-card:hover {
+    transform: translateY(-8px); /* Hover'da hafif yukarı kalkma efekti */
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15); /* Hover'da daha belirgin gölge */
+}
+
+.stats-icon {
+    font-size: 2.8em; /* İkon boyutunu büyüt */
+    color: #1976D2; /* Vurgulu mavi renk */
+    margin-bottom: 15px; /* İkon ve metin arasındaki boşluk */
+}
+
+.stats-content {
+    text-align: center; /* Metinleri ortala */
+}
+
+.stats-title {
+    margin: 0 0 5px 0; /* Başlık altı boşluğu */
+    font-size: 1.1em;
+    color: #546E7A; /* Açık gri-mavi renk */
+    font-weight: 500;
+    text-transform: uppercase; /* Başlıkları büyük harf yap */
+    letter-spacing: 0.5px;
+}
+
+.stats-value {
+    margin: 0;
+    font-size: 2.2em; /* Değer (sayı) fontunu büyüt */
+    font-weight: 700;
+    color: #263238; /* Koyu gri renk */
+}
+
+/* Ek Düğme Stilleri veya Sayfa Yapılandırması (Dashboard.css'te de ayarlanabilir) */
+.dashboard-content-wrapper.trainer-dashboard .stats-grid {
+    display: flex;
+    flex-wrap: wrap; /* Küçük ekranlarda alt alta gelsinler */
+    justify-content: center; /* Kartları ortala */
+    gap: 20px; /* Kartlar arası boşluk */
+    margin-top: 30px; /* Hoş geldiniz banner'ından sonra boşluk */
+    padding: 0 10px; /* Kenarlardan biraz boşluk */
+}
+
+/* Mobil Cihazlar için Düzenleme */
+@media (max-width: 768px) {
+    .stats-card {
+        flex-basis: calc(50% - 20px); /* İki sütunlu */
+        min-width: 180px;
+    }
+}
+
+@media (max-width: 480px) {
+    .stats-card {
+        flex-basis: 100%; /* Tek sütunlu */
+        margin: 10px 0;
+    }
+    .stats-icon {
+        font-size: 2.5em;
+    }
+    .stats-value {
+        font-size: 2em;
+    }
+}
